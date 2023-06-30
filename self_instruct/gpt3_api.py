@@ -12,6 +12,8 @@ def make_requests(
         engine, prompts, max_tokens, temperature, top_p, 
         frequency_penalty, presence_penalty, stop_sequences, logprobs, n, best_of, retries=3, api_key=None, organization=None
     ):
+    with open('../self_instruct/apikey.json') as f:
+        api_key = json.load(f)["apikey"]
     response = None
     target_length = max_tokens
     if api_key is not None:
@@ -154,7 +156,7 @@ if __name__ == "__main__":
     args = parse_args()
     os.makedirs(os.path.dirname(args.output_file), exist_ok=True)
 
-    # read existing file if it exists
+    # read existing file if it exists # 중복방지
     existing_responses = {}
     if os.path.exists(args.output_file) and args.use_existing_responses:
         with open(args.output_file, "r") as fin:

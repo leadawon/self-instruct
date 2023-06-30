@@ -1,0 +1,14 @@
+{"instruction": "Determine the reason for speaker 1 and speaker 2's conversation.", "is_classification": " No"}
+{"instruction": "Determine whether or not there is any irony in the dialogue.", "is_classification": " No"}
+{"instruction": "Identify if the dialogue contains any humour.", "is_classification": " Yes"}
+{"instruction": "Analyze how the speakers' use of language affects their relationship (e.g., formal, informal).", "is_classification": " No"}
+{"instruction": "Describe the speaker's attitude toward each other (e.g., polite, hostile).", "is_classification": " No"}
+{"instruction": "Identify what happens to change the tone of the conversation.", "is_classification": " No"}
+{"instruction": "Identify the emotions that are evoked by the conversation.", "is_classification": " No"}
+{"instruction": "Identify how each of these elements are expressed within the dialogue.", "is_classification": " No"}
+{"instruction": "Identify which of these elements have been explicitly stated, and which ones are implied.", "is_classification": " Yes"}
+{"instruction": "Determine if there is a connection between the various elements that you have identified.", "is_classification": " No"}
+{"instruction": "Evaluate whether the speaker's intentions are positive or negative.", "is_classification": " No"}
+{"instruction": "Identify the main idea of the conversation and state it in your own words.", "is_classification": " No"}
+{"instruction": "Analyze the overall emotional state of the speakers throughout the conversation.", "is_classification": " No"}
+{"instruction": "Determine whether the conversation was successful in achieving its goals (e.g., selling a product, negotiating a deal).", "is_classification": " Yes"}

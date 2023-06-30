@@ -80,10 +80,10 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
 
-    with open(os.path.join(args.batch_dir, args.input_file)) as fin:
+    with open(os.path.join(args.batch_dir, args.input_file)) as fin: #machine generated instruction 만!!! 가지고
         lines = fin.readlines()
         if args.num_instructions is not None:
-            lines = lines[:args.num_instructions]
+            lines = lines[:args.num_instructions] #엥 슬라이싱?
         tasks = []
         for line in lines:
             data = json.loads(line)
@@ -91,7 +91,7 @@ if __name__ == '__main__':
                 data["instruction_metadata"] = data["metadata"]
                 del data["metadata"]
             tasks.append(data)
-
+        
     task_clf_types = {}
     with open(os.path.join(args.batch_dir, "is_clf_or_not_davinci_template_1.jsonl")) as fin:
         for line in fin:
@@ -115,12 +115,14 @@ if __name__ == '__main__':
                 except:
                     pass
         print(f"Loaded {len(existing_requests)} existing requests")
-
+    
+    #task에 instruction이 담겨있습니다.
     progress_bar = tqdm.tqdm(total=len(tasks))
     with open(output_path, "w") as fout:
         for batch_idx in range(0, len(tasks), args.request_batch_size):
-            batch = tasks[batch_idx: batch_idx + args.request_batch_size]
-            if all(d["instruction"] in existing_requests for d in batch):
+            batch = tasks[batch_idx: batch_idx + args.request_batch_size] #필요한 배치만 뽑아내서
+            if all(d["instruction"] in existing_requests for d in batch): #배치에서 모든 인스트럭션에대한 인스턴스가 모두 존재할때
+                print("count1")
                 for d in batch:
                     data = existing_requests[d["instruction"]]
                     data = OrderedDict(
@@ -128,9 +130,11 @@ if __name__ == '__main__':
                             ["instruction", "raw_instances", "instance_metadata", "instruction_metadata", 
                             "most_similar", "avg_similarity_score"]
                         )
-                    fout.write(json.dumps(data, ensure_ascii=False) + "\n")
-            else:
+                    fout.write(json.dumps(data, ensure_ascii=False) + "\n") #write로 open했기때문에 이미 있더라도 다시 적어준다.
+            else: # 배치중에 하나라도 인스턴스를 만든 이력이 없을때
+                print("count2")
                 prompts = []
+                # task_clf_types는 인스트럭션을 키로 넣으면 classification이면 True를 반환하는 딕셔너리임.
                 for task in batch:
                     if task_clf_types[task["instruction"]]:
                         prompt = output_first_template_for_clf + " " + task["instruction"].strip() + "\n"

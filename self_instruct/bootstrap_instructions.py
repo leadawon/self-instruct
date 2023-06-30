@@ -22,17 +22,18 @@ def encode_prompt(prompt_instructions, classification=False):
         prompt = "Come up with a series of classification tasks. Try to specify the possible output labels when possible.\n"
     else:
         prompt = "Come up with a series of tasks:\n"
-    for idx, instruction in enumerate(prompt_instructions):
+    for idx, instruction in enumerate(prompt_instructions): #instruction에서 
         instruction = re.sub(r"\s+", " ", instruction).strip().rstrip(":")
-        prompt += f"{idx+1}. {instruction}\n"
-    prompt += f"{len(prompt_instructions) + 1}."
-    return prompt
+        # 연속된 공백을 하나의 공백으로 대체
+        prompt += f"{idx+1}. {instruction}\n" #instruction을 앞에 인덱스를 붙여서 이어붙여서 prompt에 저장
+    prompt += f"{len(prompt_instructions) + 1}." #few shot? 
+    return prompt #부여받은 인스트럭션을 쭉 이어붙이고 다음 인스트럭션이 무엇이 될지 예측
 
 
 def sample_machine_instructions(machine_instructions, similarities, n):
     """Sample n machine instructions from a list of machine instructions."""
     return random.sample(machine_instructions, min(n, len(machine_instructions)))
-
+    # machine_instructions에서 min(...) 만큼 뽑아서 리스트로 반환
 
 def find_word_in_string(w, s):
     return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search(s)
@@ -130,17 +131,17 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    seed_tasks = [json.loads(l) for l in open(args.seed_tasks_path, "r")]
-    if args.use_clf_seed_tasks_only:
-        seed_tasks = [t for t in seed_tasks if t["is_classification"]]
-    seed_instructions = [t["instruction"] for t in seed_tasks]
-    print(f"Loaded {len(seed_instructions)} human-written seed instructions")
     
+    seed_tasks = [json.loads(l) for l in open(args.seed_tasks_path, "r")]
+    if args.use_clf_seed_tasks_only:    #classification을 위한 조건문
+        seed_tasks = [t for t in seed_tasks if t["is_classification"]]
+    seed_instructions = [t["instruction"] for t in seed_tasks] #instruction을 가져온다.
+    print(f"Loaded {len(seed_instructions)} human-written seed instructions")
     os.makedirs(args.batch_dir, exist_ok=True)
     request_idx = 0
     # load the LM-generated instructions
     machine_instructions = []
-    if os.path.exists(os.path.join(args.batch_dir, "machine_generated_instructions.jsonl")):
+    if os.path.exists(os.path.join(args.batch_dir, "machine_generated_instructions.jsonl")): #machine generated ...?
         with open(os.path.join(args.batch_dir, "machine_generated_instructions.jsonl"), "r") as fin:
             for line in fin:
                 instruction_info = json.loads(line)
@@ -156,7 +157,7 @@ if __name__ == "__main__":
     if machine_instructions:
         progress_bar.update(len(machine_instructions))
 
-    with open(os.path.join(args.batch_dir, "machine_generated_instructions.jsonl"), "a") as fout:
+    with open(os.path.join(args.batch_dir, "machine_generated_instructions.jsonl"), "a") as fout: #이어쓰기
         while len(machine_instructions) < args.num_instructions_to_generate:
             batch_inputs = []
             for _ in range(args.request_batch_size):
@@ -164,12 +165,15 @@ if __name__ == "__main__":
                 prompt_instructions = sample_machine_instructions(
                     machine_instructions, 
                     similarities=None,
-                    n=2)
+                    n=2) #걍 machine_instructions에서 랜덤으로 2개 뽑아서 리스트로 반환.
                 # sample human instructions from the pool
                 prompt_instructions += random.sample(seed_instructions, args.num_prompt_instructions - len(prompt_instructions))
+                # human이 작성한 instruction에서도 몇개 뽑는다.
                 random.shuffle(prompt_instructions)
                 prompt = encode_prompt(prompt_instructions, classification=args.use_clf_seed_tasks_only)
+                #promt는 지금까지의 instruction을 이어붙인것입니다.
                 batch_inputs.append(prompt)
+            ## for loop end
             results = make_gpt3_requests(
                 engine=args.engine,
                 prompts=batch_inputs,

@@ -66,3 +66,14 @@ If you use the Self-Instruct framework or data, feel free to cite us.
   year={2022}
 }
 ```
+
+## dawon customize
+templates/custom_instance_gen_template.py
+task , class label , dialogue -> this is for daily dialogue task
+
+custom_generate_instances.py
+this way needs not only instruction but also input dialogue
+
+
+if you use at least custom start file then you have to use all custom start files
+ 

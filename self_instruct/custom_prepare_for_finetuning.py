@@ -141,23 +141,28 @@ def filter_invalid_instances(instances):
 
 def parse_instances_for_generation_task(raw_text, instruction, response_metadata):
     instances = []
-    raw_text = raw_text.strip()
-    if re.findall("Example\s?\d*\.?", raw_text):
-        instance_texts = re.split(r"Example\s?\d*\.?", raw_text)
-        instance_texts = [it.strip() for it in instance_texts if it.strip() != ""]
-        for instance_text in instance_texts:
-            inst_input, inst_output = parse_input_output(instance_text)
-            instances.append((instruction.strip(), inst_input.strip(), inst_output.strip()))
-    elif re.findall(r"Output\s*\d*\s*:", raw_text):
-        # we assume only one input/output pair in this case
-        inst_input, inst_output = parse_input_output(raw_text)
-        instances.append((instruction.strip(), inst_input.strip(), inst_output.strip()))
-    else:
+    if not "Class label:" in raw_text or not "Dialogue:" in raw_text:
         return []
+    instance_texts = raw_text.split("Dialogue:")[1:]
+    for instance_text in instance_texts:  # dialogue내용 Class label: Classlabel 내용
+        instance_text = instance_text.strip()
+        fields = instance_text.split("Class lable:",1)
+        if len(fields) == 2:
+            # the first field split by \n is the class label
+            class_label = fields[1].strip()
+            # the rest is the input
+            input_text = fields[0].strip()
+        elif len(fields) == 1:
+            # the first field split by \n is the input
+            continue
+            
+        else:
+            raise ValueError("Invalid instance text: {}".format(instance_text))
+        instances.append((instruction.strip(), input_text.strip(), class_label.strip()))
+
     # if the generation stops because of length, we remove the last instance
     if response_metadata["response"]["choices"][0]["finish_reason"] == "length":
         instances = instances[:-1]
-    
     instances = filter_invalid_instances(instances)
     instances = filter_duplicate_instances(instances)
     return instances
@@ -166,19 +171,19 @@ def parse_instances_for_classification_task(raw_text, instruction, response_meta
     instances = []
     if not "Class label:" in raw_text or not "Dialogue:" in raw_text:
         return []
-    instance_texts = raw_text.split("Class label:")[1:]
-    for instance_text in instance_texts:
+    instance_texts = raw_text.split("Dialogue:")[1:]
+    for instance_text in instance_texts:  # dialogue내용 Class label: Classlabel 내용
         instance_text = instance_text.strip()
-        fields = instance_text.split("\n", 1)
+        fields = instance_text.split("Class lable:",1)
         if len(fields) == 2:
             # the first field split by \n is the class label
-            class_label = fields[0].strip()
+            class_label = fields[1].strip()
             # the rest is the input
-            input_text = fields[1].strip()
+            input_text = fields[0].strip()
         elif len(fields) == 1:
             # the first field split by \n is the input
-            class_label = fields[0].strip()
-            input_text = ""
+            continue
+            
         else:
             raise ValueError("Invalid instance text: {}".format(instance_text))
         instances.append((instruction.strip(), input_text.strip(), class_label.strip()))

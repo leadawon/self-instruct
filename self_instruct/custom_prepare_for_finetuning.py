@@ -139,7 +139,7 @@ def filter_invalid_instances(instances):
         filtered_instances.append(instance)
     return filtered_instances
 
-def parse_instances_for_generation_task(raw_text, instruction, response_metadata):
+def parse_instances_for_generation_task(raw_text, instruction, response_metadata): # 이거안씀!!!
     instances = []
     if not "Class label:" in raw_text or not "Dialogue:" in raw_text:
         return []
@@ -169,24 +169,19 @@ def parse_instances_for_generation_task(raw_text, instruction, response_metadata
 
 def parse_instances_for_classification_task(raw_text, instruction, response_metadata):
     instances = []
-    if not "Class label:" in raw_text or not "Dialogue:" in raw_text:
+    fields = raw_text.split("|")
+    if len(fields) == 2:
+        # the first field split by \n is the class label
+        class_label = fields[1].strip()
+        # the rest is the input
+        input_text = fields[0].strip()
+    elif len(fields) == 1:
+        # the first field split by \n is the input
         return []
-    instance_texts = raw_text.split("Dialogue:")[1:]
-    for instance_text in instance_texts:  # dialogue내용 Class label: Classlabel 내용
-        instance_text = instance_text.strip()
-        fields = instance_text.split("Class lable:",1)
-        if len(fields) == 2:
-            # the first field split by \n is the class label
-            class_label = fields[1].strip()
-            # the rest is the input
-            input_text = fields[0].strip()
-        elif len(fields) == 1:
-            # the first field split by \n is the input
-            continue
             
-        else:
-            raise ValueError("Invalid instance text: {}".format(instance_text))
-        instances.append((instruction.strip(), input_text.strip(), class_label.strip()))
+    else:
+        raise ValueError("Invalid instance text: {}".format(instance_text))
+    instances.append((instruction.strip(), input_text.strip(), class_label.strip()))
 
     # if the generation stops because of length, we remove the last instance
     if response_metadata["response"]["choices"][0]["finish_reason"] == "length":
@@ -202,7 +197,7 @@ if __name__ == "__main__":
     training_instances = []
     
     generated_tasks = []
-    for instance_file in args.instance_files:
+    for instance_file in args.instance_files: #machine generated 가져온다.
         with open(instance_file) as fin:
             for line in fin:
                 generated_tasks.append(json.loads(line))
@@ -224,8 +219,8 @@ if __name__ == "__main__":
         if task["is_classification"]:
             task_instances = parse_instances_for_classification_task(task["raw_instances"], instruction, task["instance_metadata"])
         else:
-            task_instances = parse_instances_for_generation_task(task["raw_instances"], instruction, task["instance_metadata"])
-
+            task_instances = parse_instances_for_classification_task(task["raw_instances"], instruction, task["instance_metadata"])
+            # 같은 함수를 쓰도록 변경함.
         # we only allow max 5 instances per task
         task_instances = random.sample(task_instances, min(len(task_instances), 5))
         

@@ -37,6 +37,7 @@ def make_requests(
                 n=n,
                 best_of=best_of,
             )
+            
             break
         except openai.error.OpenAIError as e:
             print(f"OpenAIError: {e}.")

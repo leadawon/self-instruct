@@ -175,12 +175,12 @@ def parse_instances_for_classification_task(raw_text, instruction, response_meta
         class_label = fields[1].strip()
         # the rest is the input
         input_text = fields[0].strip()
-    elif len(fields) == 1:
+    elif len(fields) <= 1:
         # the first field split by \n is the input
         return []
             
     else:
-        raise ValueError("Invalid instance text: {}".format(instance_text))
+        raise ValueError("Invalid instance text: {}".format(raw_text))
     instances.append((instruction.strip(), input_text.strip(), class_label.strip()))
 
     # if the generation stops because of length, we remove the last instance

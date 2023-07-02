@@ -1,0 +1,13 @@
+{"instruction": "Determine the main purpose of the dialogue (e.g., friendly chat, business meeting).", "is_classification": " No"}
+{"instruction": "Identify the overall goal of the dialogue.", "is_classification": " Yes"}
+{"instruction": "Extract the major ideas and themes discussed in the dialogue.", "is_classification": " No"}
+{"instruction": "Analyze the language used by speaker 1 and speaker 2 throughout the dialogue.", "is_classification": " No"}
+{"instruction": "Summarize the key points made by speaker 1 and speaker 2.", "is_classification": " No"}
+{"instruction": "Identify any obstacles or barriers mentioned by either speaker during the conversation.", "is_classification": " No"}
+{"instruction": "Determine whether the speakers are in agreement, disagreeing, or indifferent about a topic.", "is_classification": " Yes"}
+{"instruction": "Summarize the conversation in a few sentences.", "is_classification": " No"}
+{"instruction": "Identify whether there is a call to action by speaker 1 or speaker 2.", "is_classification": " Yes"}
+{"instruction": "Determine what was said, what wasn't said, and what was implied during the conversation.", "is_classification": " No"}
+{"instruction": "Extract topic from the dialogue.", "is_classification": " No"}
+{"instruction": "Extract relationship, speaker persona, speaker emotion, main topic, and emotional state of speaker from the dialogue.", "is_classification": " Yes"}
+{"instruction": "Determine how the conversation relates to the overall goal of the business.", "is_classification": " No"}

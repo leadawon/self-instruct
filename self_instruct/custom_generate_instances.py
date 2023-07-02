@@ -85,7 +85,7 @@ if __name__ == '__main__':
     args = parse_args()
     idx = 0
 
-    with open("dailydialogue.json","r") as json_file:
+    with open("../self_instruct/dailydialogue.json","r") as json_file:
         input_texts = json.load(json_file)["list"]
 
     with open(os.path.join(args.batch_dir, args.input_file)) as fin: #machine generated instruction 만!!! 가지고
@@ -145,11 +145,11 @@ if __name__ == '__main__':
                 # task_clf_types는 인스트럭션을 키로 넣으면 classification이면 True를 반환하는 딕셔너리임.
                 for task in batch:
                     if task_clf_types[task["instruction"]]:
-                        prompt = "Dialogue:\n" + input_texts[idx] + "\nTask:\n" + task["instruction"].strip() + "\n"
+                        prompt = "Dialogue:\n" + input_texts[idx] + "\nTask:\n" + task["instruction"].strip()
                         idx += 1
                         prompts.append(prompt)
                     else:
-                        prompt = "Dialogue:\n" + input_texts[idx] + "\nTask:\n" + task["instruction"].strip() + "\n"
+                        prompt = "Dialogue:\n" + input_texts[idx] + "\nTask:\n" + task["instruction"].strip()
                         idx += 1
                         prompts.append(prompt)
                 results = make_gpt3_requests(
@@ -173,8 +173,7 @@ if __name__ == '__main__':
                     data = batch[i]
                     data["instance_metadata"] = results[i]
                     if results[i]["response"] is not None:
-                        results[i]["response"]["choices"][0]["text"] = input_texts[idx] + "|" + results[i]["response"]["choices"][0]["text"]
-                        data["raw_instances"] = results[i]["response"]["choices"][0]["text"]
+                        data["raw_instances"] = input_texts[idx] + " | " + results[i]["response"]["choices"][0]["text"]
                     else:
                         data["raw_instances"] = ""
                     data = OrderedDict(

@@ -23,7 +23,7 @@ def parse_args():
     parser.add_argument(
         "--classification_type_files",
         nargs="+",
-        default=["data/batch_221203/is_clf_or_not_davinci_template_1.jsonl"],
+        default=["data/batch_221203/is_clf_or_not_text-davinci-003_template_1.jsonl"],
     )
     parser.add_argument(
         "--output_dir",
@@ -129,43 +129,46 @@ def filter_invalid_instances(instances):
     for instance in instances:
         # if input and output are the same, we will not use such instances
         if instance[1] == instance[2]:
+            print("invalid_error1 in preparing instances")
             continue
         # if output is empty, we will not use such instances
         if instance[2] == "":
+            print("invalid_error2 in preparing instances")
             continue
         # if input or output ends with a colon, these are usually imcomplete generation. We will not use such instances
         if instance[1].strip().endswith(":") or instance[2].strip().endswith(":"):
+            print("invalid_error3 in preparing instances")
             continue
         filtered_instances.append(instance)
     return filtered_instances
 
-def parse_instances_for_generation_task(raw_text, instruction, response_metadata): # 이거안씀!!!
-    instances = []
-    if not "Class label:" in raw_text or not "Dialogue:" in raw_text:
-        return []
-    instance_texts = raw_text.split("Dialogue:")[1:]
-    for instance_text in instance_texts:  # dialogue내용 Class label: Classlabel 내용
-        instance_text = instance_text.strip()
-        fields = instance_text.split("Class lable:",1)
-        if len(fields) == 2:
-            # the first field split by \n is the class label
-            class_label = fields[1].strip()
-            # the rest is the input
-            input_text = fields[0].strip()
-        elif len(fields) == 1:
-            # the first field split by \n is the input
-            continue
+# def parse_instances_for_generation_task(raw_text, instruction, response_metadata): # 이거안씀!!!
+#     instances = []
+#     if not "Class label:" in raw_text or not "Dialogue:" in raw_text:
+#         return []
+#     instance_texts = raw_text.split("Dialogue:")[1:]
+#     for instance_text in instance_texts:  # dialogue내용 Class label: Classlabel 내용
+#         instance_text = instance_text.strip()
+#         fields = instance_text.split("Class lable:",1)
+#         if len(fields) == 2:
+#             # the first field split by \n is the class label
+#             class_label = fields[1].strip()
+#             # the rest is the input
+#             input_text = fields[0].strip()
+#         elif len(fields) == 1:
+#             # the first field split by \n is the input
+#             continue
             
-        else:
-            raise ValueError("Invalid instance text: {}".format(instance_text))
-        instances.append((instruction.strip(), input_text.strip(), class_label.strip()))
+#         else:
+#             raise ValueError("Invalid instance text: {}".format(instance_text))
+#         instances.append((instruction.strip(), input_text.strip(), class_label.strip()))
 
-    # if the generation stops because of length, we remove the last instance
-    if response_metadata["response"]["choices"][0]["finish_reason"] == "length":
-        instances = instances[:-1]
-    instances = filter_invalid_instances(instances)
-    instances = filter_duplicate_instances(instances)
-    return instances
+#     # if the generation stops because of length, we remove the last instance
+#     if response_metadata["response"]["choices"][0]["finish_reason"] == "length":
+#         instances = instances[:-1]
+#     instances = filter_invalid_instances(instances)
+#     instances = filter_duplicate_instances(instances)
+#     return instances
 
 def parse_instances_for_classification_task(raw_text, instruction, response_metadata):
     instances = []
@@ -186,8 +189,8 @@ def parse_instances_for_classification_task(raw_text, instruction, response_meta
     # if the generation stops because of length, we remove the last instance
     if response_metadata["response"]["choices"][0]["finish_reason"] == "length":
         instances = instances[:-1]
-    instances = filter_invalid_instances(instances)
-    instances = filter_duplicate_instances(instances)
+    instances = filter_invalid_instances(instances) # 이정도는 써도 될듯?
+    # instances = filter_duplicate_instances(instances) # 이건 쓰지 말아보자.
     return instances
 
 
@@ -222,8 +225,8 @@ if __name__ == "__main__":
             task_instances = parse_instances_for_classification_task(task["raw_instances"], instruction, task["instance_metadata"])
             # 같은 함수를 쓰도록 변경함.
         # we only allow max 5 instances per task
-        task_instances = random.sample(task_instances, min(len(task_instances), 5))
-        
+        # task_instances = random.sample(task_instances, min(len(task_instances), 5))
+        # no limit
         if not task_instances:
             continue
 

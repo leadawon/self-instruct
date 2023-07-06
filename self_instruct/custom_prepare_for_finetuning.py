@@ -183,7 +183,7 @@ def parse_instances_for_classification_task(raw_text, instruction, response_meta
         return []
             
     else:
-        raise ValueError("Invalid instance text: {}".format(raw_text))
+        return []
     instances.append((instruction.strip(), input_text.strip(), class_label.strip()))
 
     # if the generation stops because of length, we remove the last instance

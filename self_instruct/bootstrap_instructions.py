@@ -21,7 +21,7 @@ def encode_prompt(prompt_instructions, classification=False):
     if classification:
         prompt = "Come up with a series of classification tasks. Try to specify the possible output labels when possible.\n"
     else:
-        prompt = "Come up with a series of tasks:\n"
+        prompt = "Come up with a series of tasks including persona:\n"
     for idx, instruction in enumerate(prompt_instructions): #instruction에서 
         instruction = re.sub(r"\s+", " ", instruction).strip().rstrip(":")
         # 연속된 공백을 하나의 공백으로 대체

@@ -1,15 +1,101 @@
+{"instruction": "Analyze the tone of the conversation, such as whether it is friendly or confrontational.", "is_classification": " No"}
+{"instruction": "Evaluate the effectiveness of the dialogue in terms of its ability to reach a resolution or conclusion.", "is_classification": " No"}
+{"instruction": "Identify any potential solutions to the issue discussed in the dialogue.", "is_classification": ""}
+{"instruction": "What is the tone of the conversation? is it friendly, confrontational, or neutral?", "is_classification": " Yes"}
+{"instruction": "Determine if any topics were left unresolved by the end of the dialogue.", "is_classification": " No"}
+{"instruction": "Create a timeline of the conversation", "is_classification": " No"}
+{"instruction": "Construct a dialogue tree to represent the conversation", "is_classification": " No"}
+{"instruction": "Are there any underlying assumptions or biases expressed by either speaker?", "is_classification": " No"}
+{"instruction": "Is the conversation leading to a resolution or conclusion? if so, what is it?", "is_classification": " No"}
+{"instruction": "Identify any potential biases or assumptions made by either speaker during the conversation.", "is_classification": " No"}
+{"instruction": "Are there any underlying motives behind the dialogue? if so, what are they?", "is_classification": " No"}
+{"instruction": "Determine the primary goal of speaker 1 in this conversation.", "is_classification": " No"}
+{"instruction": "Summarize the key points made by both speakers during the dialogue.", "is_classification": " No"}
+{"instruction": "Evaluate the tone of each speaker during the dialogue.", "is_classification": " No"}
+{"instruction": "Assess how well speaker 1 and speaker 2 were able to communicate effectively with one another.", "is_classification": " No"}
+{"instruction": "Identify any potential misunderstandings or miscommunications between the two speakers.", "is_classification": " No"}
+{"instruction": "Identify any cultural or social norms that are present in the conversation.", "is_classification": " No"}
+{"instruction": "Construct a timeline of events and topics discussed during the conversation.", "is_classification": " No"}
+{"instruction": "Identify any misunderstandings or miscommunications between speaker 1 and speaker 2.", "is_classification": " No"}
+{"instruction": "Create a summary of the conversation, including key points made by each speaker.", "is_classification": " No"}
+{"instruction": "Identify the speaker's main points and arguments.", "is_classification": " No"}
+{"instruction": "Assess how well each speaker was able to communicate their point of view.", "is_classification": " No"}
+{"instruction": "Create a timeline of the conversation, including any pauses or breaks in dialogue.", "is_classification": " No"}
+{"instruction": "Summarize the main points discussed during the conversation.", "is_classification": " No"}
+{"instruction": "Compare and contrast the dialogue with other similar conversations, if applicable.", "is_classification": " No"}
+{"instruction": "Identify any areas of disagreement between the two speakers.", "is_classification": " No"}
+{"instruction": "Analyze how each speaker's perspective affects their understanding of the conversation.", "is_classification": " No"}
+{"instruction": "Determine the overall sentiment of the conversation.", "is_classification": " No."}
+{"instruction": "Identify any topics or themes that are discussed in the conversation.", "is_classification": " No."}
+{"instruction": "Summarize the conversation in one sentence.", "is_classification": " No"}
+{"instruction": "Describe how the conversation could have gone differently if speaker 1 had taken a different approach.", "is_classification": " No"}
+{"instruction": "Identify any potential areas of improvement for the conversation.", "is_classification": " No"}
+{"instruction": "Generate a list of questions that could have been asked to further explore the topic discussed in the conversation.", "is_classification": " No"}
+{"instruction": "Identify any key words or phrases that are used to emphasize certain points in the conversation.", "is_classification": " No"}
+{"instruction": "Analyze the tone of the conversation and determine if it is positive, negative, or neutral.", "is_classification": " Yes"}
+{"instruction": "Analyze the conversation to determine if it is leading towards a resolution or conclusion.", "is_classification": " No"}
+{"instruction": "Identify any common language patterns or expressions used by the speakers.", "is_classification": " No"}
+{"instruction": "Are there any potential areas of conflict between the two speakers? if so, what are they and how do they affect the conversation?", "is_classification": " No"}
 {"instruction": "Summarize the conversation in a few sentences.", "is_classification": " No"}
-{"instruction": "Identify any cultural or social context clues that may be present in the dialogue.", "is_classification": " No"}
-{"instruction": "Identify any nonverbal cues that speaker 2 may have used during the dialogue.", "is_classification": " No"}
-{"instruction": "Determine if there is a consensus between both speakers on the topic discussed in the conversation.", "is_classification": " No"}
-{"instruction": "Analyze the sentiment of each utterance in the dialogue", "is_classification": " No"}
-{"instruction": "Identify any implicit information that is not explicitly stated by either speaker 1 or speaker 2.", "is_classification": ""}
-{"instruction": "Identify any potential areas of disagreement between the two speakers.", "is_classification": " No"}
-{"instruction": "Develop a summary of the conversation, including key points and conclusions.", "is_classification": " No"}
-{"instruction": "Determine if any new information was revealed by either speaker that was not previously known to the other person.", "is_classification": " No"}
-{"instruction": "Identify any potential areas of disagreement between speaker 1 and speaker 2.", "is_classification": ""}
-{"instruction": "Develop a plan to address the main issue discussed in the dialogue.", "is_classification": " No"}
-{"instruction": "Evaluate the effectiveness of speaker 1's communication style.", "is_classification": " No"}
-{"instruction": "Identify any areas for improvement in terms of communication strategies used by both speakers.", "is_classification": " No"}
-{"instruction": "Create a timeline of the conversation, noting when each speaker speaks and how long they speak for.", "is_classification": " No"}
-{"instruction": "Suggest possible solutions to any disagreements or conflicts that arise in the conversation.", "is_classification": " No"}
+{"instruction": "Analyze the tone of the conversation, including any emotions expressed by either speaker.", "is_classification": " No"}
+{"instruction": "What kind of language does each speaker use? is it formal or informal, and how does this affect the conversation?", "is_classification": " No"}
+{"instruction": "Analyze the body language of both speakers. how do their gestures and facial expressions contribute to the dialogue?", "is_classification": " No"}
+{"instruction": "Analyze the impact of each speaker's language choice on the conversation.", "is_classification": " No"}
+{"instruction": "Compare and contrast the dialogues in terms of structure, content, and style.", "is_classification": " No"}
+{"instruction": "What could have been done differently to improve the communication between speaker 1 and speaker 2?", "is_classification": " No"}
+{"instruction": "Are there any potential misunderstandings or miscommunications that could arise from this dialogue?", "is_classification": " No"}
+{"instruction": "Suggest a possible solution to the problem discussed in the conversation.", "is_classification": " No"}
+{"instruction": "Discuss any potential implications of the dialogue for future conversations or interactions between speaker 1 and speaker 2.", "is_classification": " No"}
+{"instruction": "Identify any nonverbal cues that are used in the dialogue.", "is_classification": " No"}
+{"instruction": "Describe how the conversation could have been improved or made more effective.", "is_classification": " No"}
+{"instruction": "Identify any patterns or commonalities in the conversation.", "is_classification": " No."}
+{"instruction": "Analyze the effectiveness of the communication between speaker 1 and speaker 2.", "is_classification": " No"}
+{"instruction": "Develop a plan of action to resolve the issue discussed in the dialogue.", "is_classification": " No"}
+{"instruction": "Analyze the language used by both speakers and identify any possible discrepancies.", "is_classification": " No"}
+{"instruction": "Determine how speaker 1's opinion has changed from the beginning to the end of the conversation.", "is_classification": " No"}
+{"instruction": "Determine whether or not the conversation was successful in achieving its goal.", "is_classification": ""}
+{"instruction": "Analyze the overall tone of the conversation. is it positive or negative? how does this affect the discussion?", "is_classification": " No"}
+{"instruction": "Compare and contrast the two speakers' perspectives on the topic discussed.", "is_classification": " No"}
+{"instruction": "Identify the main points of disagreement between speaker 1 and speaker 2.", "is_classification": " No"}
+{"instruction": "Identify any areas of potential conflict between speaker 1 and speaker 2.", "is_classification": " No"}
+{"instruction": "Analyze the tone used by each speaker during the conversation.", "is_classification": " No"}
+{"instruction": "Analyze the tone of the conversation and how it changes over time.", "is_classification": " No"}
+{"instruction": "Determine any underlying themes or issues that are being discussed in the dialogue.", "is_classification": " No."}
+{"instruction": "Identify any underlying emotions or feelings expressed by either speaker.", "is_classification": " No"}
+{"instruction": "What topics were discussed in the conversation?", "is_classification": " No"}
+{"instruction": "Summarize the key points and conclusions made by speaker 1 in the dialogue.", "is_classification": " No"}
+{"instruction": "Assess the overall effectiveness of the conversation, based on its purpose and objectives.", "is_classification": " No"}
+{"instruction": "What strategies could have been used to resolve the disagreement?", "is_classification": " No"}
+{"instruction": "Suggest ways to improve the conversation and make it more productive.", "is_classification": " No"}
+{"instruction": "Assess the impact of the conversation on each speaker's opinion and behavior.", "is_classification": " No"}
+{"instruction": "Identify any underlying assumptions or beliefs that are being expressed by either speaker.", "is_classification": " No."}
+{"instruction": "Determine any nonverbal cues used by either speaker during the conversation.", "is_classification": " No"}
+{"instruction": "Analyze the sentiment of each speaker in the conversation.", "is_classification": ""}
+{"instruction": "Identify any emotions that are being expressed by either speaker during the dialogue.", "is_classification": " No"}
+{"instruction": "Determine any potential solutions or outcomes from the conversation.", "is_classification": " No"}
+{"instruction": "Identify any nonverbal cues present in the dialogue (e.g., body language, facial expressions).", "is_classification": " No"}
+{"instruction": "Compare and contrast the perspectives of speaker 1 and speaker 2.", "is_classification": " No"}
+{"instruction": "Evaluate the effectiveness of the conversation in terms of achieving its desired outcome.", "is_classification": " No"}
+{"instruction": "Identify any nonverbal cues that speaker 1 and speaker 2 use during the conversation.", "is_classification": " No"}
+{"instruction": "What are the main points that each speaker is trying to make?", "is_classification": " No"}
+{"instruction": "Are there any points of agreement between the two speakers? if so, what are they?", "is_classification": " No"}
+{"instruction": "Discuss any lessons learned from the conversation and how they can be applied to similar situations.", "is_classification": " No"}
+{"instruction": "Identify any underlying themes or messages within the dialogue.", "is_classification": " No."}
+{"instruction": "Summarize the main points of the conversation in a concise manner.", "is_classification": " No"}
+{"instruction": "Analyze the overall tone of the conversation and identify any potential areas for improvement.", "is_classification": " No"}
+{"instruction": "Analyze the body language of speaker 1 and speaker 2 during the conversation.", "is_classification": " No"}
+{"instruction": "In this task you will be shown a conversation context and you need to generate a set of questions that could have been asked by speaker 1 or speaker 2.", "is_classification": " No"}
+{"instruction": "Suggest alternative strategies for resolving the conversation in a more positive manner.", "is_classification": " No"}
+{"instruction": "Is there any evidence of persuasive language used by either speaker?", "is_classification": " No"}
+{"instruction": "Identify any potential areas for further discussion or exploration based on the conversation.", "is_classification": " No"}
+{"instruction": "Provide a list of actionable items that could be taken by either speaker to improve the dialogue.", "is_classification": " No"}
+{"instruction": "What is the topic of conversation?", "is_classification": " No"}
+{"instruction": "Based on your analysis, what are some possible next steps for speaker 1 and speaker 2?", "is_classification": " No"}
+{"instruction": "Create a timeline of the conversation, noting any key events or turning points.", "is_classification": " No"}
+{"instruction": "What are the implications of the conversation for the speakers and their relationship?", "is_classification": " No"}
+{"instruction": "Suggest ways to improve communication between speaker 1 and speaker 2 in future conversations.", "is_classification": " No"}
+{"instruction": "Summarize the key points discussed in the dialogue.", "is_classification": " No"}
+{"instruction": "Develop a plan for how to address similar conversations in the future.", "is_classification": " No"}
+{"instruction": "What are the underlying assumptions made by speaker 1 and speaker 2?", "is_classification": " No"}
+{"instruction": "Identify any logical fallacies used in the conversation.", "is_classification": " No"}
+{"instruction": "Develop an action plan for speaker 1 and speaker 2 to address the issue discussed in the dialogue.", "is_classification": " No"}
